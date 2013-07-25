@@ -1,0 +1,5 @@
+var stocks_table = $("#stocks_table");
+
+$('#addstock_window').foundation('reveal', 'close');
+
+stocks_table.empty().append("<%= j render 'stocks' %>");

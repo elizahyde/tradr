@@ -1,0 +1,50 @@
+body {
+  font-family: 'EB Garamond', serif;
+  color: #142142;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'EB Garamond', serif;
+  color: #142142;
+}
+
+.top-bar .tradr h1 {
+ font-size: 42px;
+ font-family: 'Playfair Display SC', serif;
+ font-weight: 700;
+ color: silver;
+ letter-spacing: 2px;
+ margin: 0;
+}
+
+.top-bar .tradr h1 a {
+  color: silver;
+}
+
+.top-bar .tradr h1 a:hover {
+  background-color: none;
+}
+
+.contain-to-grid .top-bar   {
+  background: #142142;
+  height: 55px;
+}
+.contain-to-grid {
+  background: #142142;
+  margin: 0;
+}
+
+.top-bar-section {
+  background: #142142;
+}
+
+.top-bar-section li a:not(.button) {
+  background: #142142;
+  color: silver;
+  font-size: 14px;
+}
+
+.top-bar-section > ul > .divider {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}

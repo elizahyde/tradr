@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) : "Exercisr" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "custom.modernizr.js" %>
+  <link href='http://fonts.googleapis.com/css?family=EB+Garamond|Playfair+Display+SC:400,700,400italic' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+  <div class="contain-to-grid sticky">
+    <nav class="top-bar">
+          <ul class="title-area">
+            <li class="tradr">
+              <h1><%= link_to "Tradr", root_path %></a></h1>
+            </li>
+          </ul>
+
+          <section class="top-bar-section">
+            <ul class="right">
+              <li class="divider"></li>
+              <% if current_user %>
+                <li><a href="/stocks"><%= number_to_currency(@current_user.cash) %></a></li>
+                <li><%= link_to "Stocks", stocks_path %></li>
+                <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Logout", :logout %></li>
+              <% else %>
+                <li><%= link_to "Register", new_user_path, :remote => :true, :data => {"reveal-id" => "signup_window"} %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Login", :login %></li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div id="signup_window" class="reveal-modal"></div>
+      <% if !notice.blank? || !alert.blank? %>
+        <div class="row">
+          <div class="large-12 columns">
+            <% if !notice.blank? %>
+              <div class="alert-box success" id="notice"><%= notice %></div>
+            <% end %>
+
+            <% if !alert.blank? %>
+              <div class="alert-box alert" id="alert"><%= alert %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+<div class="row">
+  <div class="large-12 column">
+    <%= yield %>
+  </div>
+</div>
+<%= javascript_include_tag "application" %>
+
+<script>
+  $(document).foundation();
+</script>
+</body>
+</html>

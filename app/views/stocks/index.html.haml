@@ -1,0 +1,9 @@
+
+%h1 Your stocks
+
+#stocks_table
+  =render 'stocks'
+
+
+= link_to "New Stock", new_stock_path, :remote => :true, :data => {"reveal-id" => "newstock_window"}, :class => "large button"
+#newstock_window.reveal-modal
