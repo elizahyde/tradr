@@ -1,13 +1,32 @@
 class Stock < ActiveRecord::Base
-  attr_accessible :symbol, :quantity, :starting_price, :user_id
   belongs_to :user
+  attr_accessible :quantity, :starting_price, :symbol
 
-  before_create :set_current_price
+  before_create :set_starting_price
 
-  def set_current_price
-    sym = symbol.upcase
-    @stock = Ystock.find([sym])
-    self.starting_price = @stock[sym.to_sym][:price]
+  def set_starting_price
+    # quote = StockQuote::Stock.quote(symbol)
+    # self.starting_price = quote.last
+
+    quote = Ystock.get_stock(symbol).first[1]
+    self.starting_price = quote[:price]
   end
 
+  def latest_price
+    # quote = StockQuote::Stock.quote(symbol)
+    # quote.last
+
+    quote = Ystock.get_stock(symbol).first[1]
+    quote[:price]
+  end
+
+  def profit
+    if starting_price == nil then 0
+    else
+    paid_initially = (starting_price * quantity).to_f
+    latest_value_of_shares = (latest_price * quantity).to_f
+
+    paid_initially - latest_value_of_shares
+  end
+  end
 end

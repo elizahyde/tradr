@@ -1,11 +1,13 @@
-$(document).ready(function() {
-  var refresh_stocks_table = fucntion(){
+$(document).ready(function(){
+  var refresh_stocks_table = function(){
     $.ajax({
-      datatype: "script",
+      dataType: "script",
       type: "get",
-      url: "/stocks/refresh_table.js"
+      url: "/stocks/refresh_table"
     });
   };
-  setInterval(refresh_stocks_table, 1000);
 
+  $("#refresh_stocks").on('click', refresh_stocks_table);
+
+  // setInterval(refresh_stocks_table, 1000);
 });
